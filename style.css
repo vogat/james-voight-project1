@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 1vmin;
+    font-family: Helvetica ;
+    height: 100vh;
+    display: grid;
+    background-color: white;
+  }
+
+  header {
+    font-size: 4vmin;
+    color: rgb( 225 225 225);
+    letter-spacing: 1vmin;
+  }
+
+  display {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-bottom: 20vmin;
+  }
+
+  payouts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  }
+
+  #slots {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  h1 {
+    grid-column: 1 / 5;
+  }
+
+p, #slots > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
