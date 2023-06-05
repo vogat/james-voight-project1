@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    background-color: black;
+  
 }
 
 body {
@@ -7,7 +9,6 @@ body {
     font-family: Helvetica ;
     height: 100vh;
     display: grid;
-    background-color: white;
   }
 
   header {
@@ -19,15 +20,18 @@ body {
   display {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    margin-bottom: 20vmin;
+    grid-template-rows: 5fr 3fr;
   }
 
   payouts {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: .8fr .8fr 1.1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    color: white;
+    font-size: 1.2vmin;
 
   }
+
 
   #slots {
     display: grid;
@@ -38,8 +42,87 @@ body {
     grid-column: 1 / 5;
   }
 
-p, #slots > div {
+p, #slots > div, #bet, #reset, #d5 {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  .sss {
+    height: 5vmin;
+    margin: 0;
+  }
+
+  .result {
+    height: 42vmin;
+  }
+
+  user {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    color: white;
+    grid-column: 1 / 5;
+    background-color: burlywood;
+  }
+
+  user > * {
+    background-color: burlywood;
+  }
+
+  #bet {
+    grid-column: 2;
+    grid-row: 1 / 5;
+    font-size: 5vmin;
+    color: white;
+    background-color: darkgrey;
+    height: 7vmin;
+    width: 25vmin;
+    border-radius: 2vmin;
+    
+    border: 0.6vmin solid grey;
+    
+  }
+  #bet:hover {
+    color: rgb(81, 81, 81);
+    background-color: white;
+    border-color: rgb(190, 190, 190);
+  }
+
+  #total {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 1.2vmin;
+  }
+
+  #spent {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 1.2vmin;
+  }
+
+  #made {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 1.2vmin;
+  }
+
+  #reset {
+    grid-column: 1;
+    grid-row: 4;
+    font-size: 1.2vmin;
+    color: white;
+    background-color: darkgrey;
+    height: 1vmin;
+    width: 7vmin;
+    border-radius: 2vmin;
+    padding: 1.5vmin;
+    border: 0.6vmin solid grey;
+    
+  }
+  #reset:hover {
+    color: rgb(81, 81, 81);
+    background-color: white;
+    border-color: rgb(190, 190, 190);
+  }
+  
