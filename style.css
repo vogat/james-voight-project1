@@ -42,7 +42,7 @@ body {
     grid-column: 1 / 5;
   }
 
-p, #slots > div, #bet, #reset, #d5 {
+p, #slots > div, #bet, #reset, #d5, #message {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,7 +60,7 @@ p, #slots > div, #bet, #reset, #d5 {
   user {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     color: white;
     grid-column: 1 / 5;
     background-color: burlywood;
@@ -68,43 +68,51 @@ p, #slots > div, #bet, #reset, #d5 {
 
   user > * {
     background-color: burlywood;
+    margin-left: 15px
   }
 
-  #bet {
+  #bet, #bet20, #bet50 {
     grid-column: 2;
-    grid-row: 1 / 5;
+    grid-row: 1 / 2;
     font-size: 5vmin;
     color: white;
     background-color: darkgrey;
     height: 7vmin;
     width: 25vmin;
     border-radius: 2vmin;
-    
+    margin: 5px;
     border: 0.6vmin solid grey;
     
   }
-  #bet:hover {
+  #bet:hover, #bet20:hover, #bet50:hover {
     color: rgb(81, 81, 81);
     background-color: white;
     border-color: rgb(190, 190, 190);
   }
 
+  #message {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    font-size: 7vmin;
+
+  }
+
   #total {
     grid-column: 1;
     grid-row: 1;
-    font-size: 1.2vmin;
+    font-size: 4vmin;
   }
 
   #spent {
     grid-column: 1;
     grid-row: 2;
-    font-size: 1.2vmin;
+    font-size: 4vmin;
   }
 
   #made {
     grid-column: 1;
     grid-row: 3;
-    font-size: 1.2vmin;
+    font-size: 4vmin;
   }
 
   #reset {
@@ -117,6 +125,7 @@ p, #slots > div, #bet, #reset, #d5 {
     width: 7vmin;
     border-radius: 2vmin;
     padding: 1.5vmin;
+    margin-bottom: 15px;
     border: 0.6vmin solid grey;
     
   }
