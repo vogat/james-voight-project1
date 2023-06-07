@@ -22,6 +22,7 @@ const BETS = [5, 20, 50];
 let money;
 let slotResults;
 let betChoice;
+let running = 0;
 
 /*----- cached element references -----*/
 const slot1El = document.getElementById('one');
@@ -77,13 +78,8 @@ function initGame () {
     renderControls();
 }
 
-function initRound() {
-    //restore the slot board
-    slotResults.slot1 = SYMBOL_LOOKUP.svn;
-    slotResults.slot2 = SYMBOL_LOOKUP.svn;
-    slotResults.slot3 = SYMBOL_LOOKUP.svn;
-    
-   
+function initRound() {   
+    messageEl.innerText = '';
 
     render()
 }
@@ -109,16 +105,11 @@ function handleBet50(evt) {
 }
 
 function handleReset(evt) {
-    //guards...
-
-    betEl.style.visibility = 'visible';
     initGame();
 }
 
 function render() {
     renderDisplay();
-    renderWinnings();
-    renderControls();
 }
 
 //random slot generation (update array of each object with the number of spins, if spins>5, then restart at 1)
@@ -137,10 +128,106 @@ function randomIdx() {
 function renderDisplay() {
     //call random slot gen function
     rndSlot()
-    //use the updated array to display slot images
+
+    betEl.style.visibility = 'hidden';
+    bet20El.style.visibility = 'hidden';
+    bet50El.style.visibility = 'hidden';
+    //display changing slot images
+    Switch1();
+}
+
+function slotLoops() {
+    setTimeout(Switch1, 0);
+}
+
+function finalSlots() {
     slot1El.innerHTML = `<img src=${slotResults.slot1.img}>`;
     slot2El.innerHTML = `<img src=${slotResults.slot2.img}>`;
     slot3El.innerHTML = `<img src=${slotResults.slot3.img}>`;
+}
+
+function Switch1(){
+    slot1El.innerHTML = `<img src=${SYMBOL_LOOKUP.svn.img}>`;
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.svn.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.svn.img}>`;
+    setTimeout(Switch2, 150);
+}
+function Switch2(){
+    slot1El.innerHTML = `<img src=${SYMBOL_LOOKUP.c.img}>`;
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.c.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.c.img}>`;
+    setTimeout(Switch3, 150);
+}
+function Switch3(){
+    slot1El.innerHTML = `<img src=${SYMBOL_LOOKUP.o.img}>`;
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.o.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.o.img}>`;
+    setTimeout(Switch4, 150);
+}
+function Switch4(){
+    slot1El.innerHTML = `<img src=${SYMBOL_LOOKUP.w.img}>`;
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.w.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.w.img}>`;
+    setTimeout(Switch5, 150);
+}
+function Switch5(){
+    slot1El.innerHTML = `<img src=${SYMBOL_LOOKUP.g.img}>`;
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.g.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.g.img}>`;
+    setTimeout(Switch6, 150);
+}
+function Switch6(){
+    slot1El.innerHTML = `<img src=${slotResults.slot1.img}>`;
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.svn.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.svn.img}>`;
+    setTimeout(Switch7, 150);
+}
+function Switch7(){
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.c.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.c.img}>`;
+    setTimeout(Switch8, 150);
+}
+function Switch8(){
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.o.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.o.img}>`;
+    setTimeout(Switch9, 150);
+}
+function Switch9(){
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.w.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.w.img}>`;
+    setTimeout(Switch10, 150);
+}
+function Switch10(){
+    slot2El.innerHTML = `<img src=${SYMBOL_LOOKUP.g.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.g.img}>`;
+    setTimeout(Switch11, 150);
+}
+function Switch11(){
+    slot2El.innerHTML = `<img src=${slotResults.slot2.img}>`;
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.svn.img}>`;
+    setTimeout(Switch12, 150);
+}
+function Switch12(){
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.c.img}>`;
+    setTimeout(Switch13, 150);
+}
+function Switch13(){
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.o.img}>`;
+    setTimeout(Switch14, 150);
+}
+function Switch14(){
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.w.img}>`;
+    setTimeout(Switch15, 150);
+}
+function Switch15(){
+    slot3El.innerHTML = `<img src=${SYMBOL_LOOKUP.g.img}>`;
+    setTimeout(Switch16, 150);
+}
+function Switch16(){
+    slot3El.innerHTML = `<img src=${slotResults.slot3.img}>`;
+
+    //call fcn render winnings
+    renderWinnings();
 }
 
 function renderWinnings() {
@@ -184,8 +271,8 @@ function renderWinnings() {
         messageEl.innerText = 'You lost. click reset to play again.';
         renderControls();
         return;
-    }
-
+    } 
+    renderControls();
     //display stats
     totalEl.innerHTML = `Total: $${money.total}`;
     spentEl.innerHTML = `Spent: $${money.lost}`;
@@ -196,19 +283,26 @@ function renderWinnings() {
 
 function renderControls() {
     //hide/show the lever button when game is running
-    if (money.total < 50) {
-        bet50El.style.visibility = 'hidden';
-    }
-    if (money.total < 20) {
-        bet20El.style.visibility = 'hidden';
-    }
+    
     if (money.total >= 50) {
         bet50El.style.visibility = 'visible';
+    }
+    if (money.total < 50) {
+        bet50El.style.visibility = 'hidden';
+        console.log(money.total)
     }
     if (money.total >= 20) {
         bet20El.style.visibility = 'visible';
     }
+    if (money.total < 20) {
+        bet20El.style.visibility = 'hidden';
+    }
+    if (money.total > 0) {
+        betEl.style.visibility = 'visible';
+        console.log('v')
+    }
     if (money.total <= 0) {
         betEl.style.visibility = 'hidden';
-    }
+        console.log('h')
+    }    
 }
