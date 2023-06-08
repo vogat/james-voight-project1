@@ -265,7 +265,6 @@ function renderWinnings() {
         messageEl.innerHTML = `You lost`;
     }
 
-    console.log(money.total)
     if (money.total <= 0) {
         totalEl.innerHTML = `Total: $${money.total}`;
         messageEl.innerText = 'You lost. click reset to play again.';
@@ -289,7 +288,6 @@ function renderControls() {
     }
     if (money.total < 50) {
         bet50El.style.visibility = 'hidden';
-        console.log(money.total)
     }
     if (money.total >= 20) {
         bet20El.style.visibility = 'visible';
@@ -299,10 +297,8 @@ function renderControls() {
     }
     if (money.total > 0) {
         betEl.style.visibility = 'visible';
-        console.log('v')
     }
     if (money.total <= 0) {
         betEl.style.visibility = 'hidden';
-        console.log('h')
     }    
 }
