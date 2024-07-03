@@ -1,4 +1,5 @@
 # james-voight-project1
+https://james-voight-project1.netlify.app/
 
 Slot machine browser game
 
